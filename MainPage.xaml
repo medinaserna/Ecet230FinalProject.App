@@ -3,39 +3,175 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Ecet230FinalProject.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <HorizontalStackLayout
+        Spacing="25"
+        Padding="20,10,0,0"
+        VerticalOptions="StartAndExpand">
+        <VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Button
+                x:Name="btnOpenClose"
+                Text="Open"
+                SemanticProperties.Hint="Open comport"
+                Clicked="btnOpenClose_Clicked"></Button>
+                <Button
+                x:Name="btnClear"
+                Text="Clear"
+                SemanticProperties.Hint="Clear serial data"
+                Clicked="btnClear_Clicked"></Button>
+                <Picker
+                x:Name="portPicker"
+                Title="Select ComPort"
+                HorizontalOptions="Center"
+                ></Picker>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Bits"
+                    FontSize="Medium">
+                </Label>
+                <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked"></Button>
+                <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked"></Button>
+                <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked"></Button>
+                <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked"></Button>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <ImageButton
+                    x:Name="imgLED1"
+                    Source="ledoff.png"
+                    HeightRequest="200"
+                    Clicked="imgLED1_Clicked"
+                    ></ImageButton>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+                <ImageButton
+                    x:Name="imgLED2"
+                    Source="ledoff.png"
+                    HeightRequest="200"
+                    Clicked="imgLED2_Clicked"
+                    ></ImageButton>
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Solar Voltage   "></Label>
+                    <Label x:Name="labelSolarVolt"
+                           MinimumWidthRequest="100"
+                           HorizontalTextAlignment="Center"
+                           ></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Battery Voltage"></Label>
+                    <Label x:Name="labelBatteryVolt"
+                           MinimumWidthRequest="100"
+                           HorizontalTextAlignment="Center"
+                           ></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Battery Current"></Label>
+                    <Label x:Name="labelBatteryCurrent"
+                           MinimumWidthRequest="100"
+                           HorizontalTextAlignment="Center"
+                           ></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="LED 1 current"></Label>
+                    <Label x:Name="labelLED1Current"
+                           MinimumWidthRequest="100"
+                           HorizontalTextAlignment="Center"
+                           ></Label>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="LED 2 current"></Label>
+                    <Label x:Name="labelLED2Current"
+                           MinimumWidthRequest="100"
+                           HorizontalTextAlignment="Center"
+                           ></Label>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
 
         </VerticalStackLayout>
-    </ScrollView>
+        <VerticalStackLayout MinimumWidthRequest="150">
+            <HorizontalStackLayout>
+                <Button
+                    x:Name="btnSend"
+                    Text="Send"
+                    Clicked="btnSend_Clicked"
+                    HorizontalOptions="Center"
+                ></Button>
+
+                <Entry
+                    x:Name="entrySend"
+                    Text="###1111196"
+                    HorizontalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label
+                    Text="Received packet History"
+                    HorizontalOptions="Center"
+                    ></Label>
+                <CheckBox
+                    x:Name="checkBoxHistory"
+                    IsChecked="False"
+                    HorizontalOptions="Center"
+                    Color="OrangeRed"
+                    ></CheckBox>
+
+                <Label
+                    Text="       Parsed Packet History"
+                    ></Label>
+                <CheckBox
+                    x:Name="checkBoxParsedHistory"
+                    IsChecked="False"
+                    HorizontalOptions="Center"
+                    Color="Aqua"
+                    ></CheckBox>
+
+            </HorizontalStackLayout>
+
+            <ScrollView
+                x:Name="scrollViewdRecData"
+                MaximumHeightRequest="500"
+                VerticalOptions="StartAndExpand"
+                ></ScrollView>
+            <Label
+                x:Name="labelRxdata"
+                Text="Parsed Packet"
+                MinimumWidthRequest="310"
+                ></Label>
+
+            <HorizontalStackLayout>
+
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label
+                    FontFamily="monospace"
+                    FontAutoScalingEnabled="False"
+                    Text="Lenght    Header  Number   Analog0   Analog1    Analog2    Analog3    Analog4     Analog5     Binary     CkSumRX  CkSumCal  lost  ChkError  Rollover"
+                    HorizontalOptions="Center"
+                    ></Label>
+
+
+            </HorizontalStackLayout>
+
+
+            <ScrollView
+                x:Name="scrollViewParsedData"
+                MaximumHeightRequest="500"
+                VerticalOptions="StartAndExpand"
+                ></ScrollView>
+            <Label
+                x:Name="labelParsedData"
+                Text="Received Packet"
+                MinimumWidthRequest="310"
+                ></Label>
+
+
+        </VerticalStackLayout>
+
+    </HorizontalStackLayout>
 
 </ContentPage>

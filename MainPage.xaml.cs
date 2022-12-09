@@ -247,7 +247,7 @@ public partial class MainPage : ContentPage
 
     }
 
-    private void btnSend_Clicked(object sender, EventArgs e)
+   /* private void btnSend_Clicked(object sender, EventArgs e)
     {
 
         try
@@ -261,67 +261,10 @@ public partial class MainPage : ContentPage
         {
             DisplayAlert("Alert", ex.Message, "Ok");
         }
-    }
+    } */
 
-    private void btnBit3_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(3);
-    }
-
-    private void btnBit2_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(2);
-    }
-
-    private void btnBit1_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(1);
-    }
-
-    private void btnBit0_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(0);
-    }
-
-    private void ButtonClicked(int i)
-    {
-        Button[] btnBit = new Button[] { btnBit0, btnBit1, btnBit2, btnBit3 };
-        if (btnBit[i].Text == "0")
-        {
-            btnBit[i].Text = "1";
-            stringBuilderSend[i + 3] = '1';
-
-            switch (i)
-            {
-                case 0:
-                    imgLED1.Source = "ledoff.png";
-                    break;
-                case 1:
-                    imgLED2.Source = "ledoff.png";
-                    break;
-            }
-
-        }
-        else
-        {
-            btnBit[i].Text = "0";
-            stringBuilderSend[i + 3] = '0';
-            switch (i)
-            {
-                case 0:
-                    imgLED1.Source = "ledon.png";
-                    break;
-                case 1:
-                    imgLED2.Source = "ledon.png";
-                    break;
-            }
-
-
-        }
-        sendPacket();
-    }
-
-    private void sendPacket()
+   
+    /* private void sendPacket()
     {
         int calSendChkSum = 0;
 
@@ -344,16 +287,6 @@ public partial class MainPage : ContentPage
         {
             DisplayAlert("Alert", ex.Message, "Ok");
         }
-    }
-
-    private void imgLED1_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(0);
-    }
-
-    private void imgLED2_Clicked(object sender, EventArgs e)
-    {
-        ButtonClicked(1);
-    }
+    } */
 
 }

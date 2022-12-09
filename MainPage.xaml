@@ -25,33 +25,8 @@
                 HorizontalOptions="Center"
                 ></Picker>
             </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <Label
-                    Text="Bits"
-                    FontSize="Medium">
-                </Label>
-                <Button x:Name="btnBit3" Text="1" FontSize="Medium" Clicked="btnBit3_Clicked"></Button>
-                <Button x:Name="btnBit2" Text="1" FontSize="Medium" Clicked="btnBit2_Clicked"></Button>
-                <Button x:Name="btnBit1" Text="1" FontSize="Medium" Clicked="btnBit1_Clicked"></Button>
-                <Button x:Name="btnBit0" Text="1" FontSize="Medium" Clicked="btnBit0_Clicked"></Button>
-            </HorizontalStackLayout>
-            <HorizontalStackLayout>
-                <ImageButton
-                    x:Name="imgLED1"
-                    Source="ledoff.png"
-                    HeightRequest="200"
-                    Clicked="imgLED1_Clicked"
-                    ></ImageButton>
-
-                <ImageButton
-                    x:Name="imgLED2"
-                    Source="ledoff.png"
-                    HeightRequest="200"
-                    Clicked="imgLED2_Clicked"
-                    ></ImageButton>
-
-            </HorizontalStackLayout>
-
+           
+          
 
             <VerticalStackLayout>
                 <HorizontalStackLayout>
@@ -81,17 +56,17 @@
         </VerticalStackLayout>
         <VerticalStackLayout MinimumWidthRequest="150">
             <HorizontalStackLayout>
-                <Button
-                    x:Name="btnSend"
-                    Text="Send"
-                    Clicked="btnSend_Clicked"
+                <Label
+                    Padding="20"
+                    Text="MEM DISCOVERY BOARD"
                     HorizontalOptions="Center"
-                ></Button>
+                    
+                    >
+                    
 
-                <Entry
-                    x:Name="entrySend"
-                    Text="###1111196"
-                    HorizontalOptions="Center"></Entry>
+                </Label>
+
+
             </HorizontalStackLayout>
             <HorizontalStackLayout>
                 <Label

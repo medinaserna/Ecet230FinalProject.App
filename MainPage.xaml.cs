@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.Graphics.Canvas.Effects;
+using System.ComponentModel;
 using System.IO.Ports;
 using System.Text;
 
@@ -13,7 +15,12 @@ public partial class MainPage : ContentPage
     private int lostPacketCount = 0;
     private int packetRollover = 0;
     private int chkSumError = 0;
-
+    private string stringXacc = "";
+    private string stringYacc = "";
+    private string stringZacc = "";
+    private int accValueX = 0;
+    private int accValueY = 0;
+    private int accValueZ = 0;
 
     StringBuilder stringBuilderSend = new StringBuilder("###1111196");
 
@@ -121,6 +128,75 @@ public partial class MainPage : ContentPage
                      $"{lostPacketCount,-14}" +
                      $"{chkSumError,-14}" +
                      $"{packetRollover}\r\n";
+
+
+                //in this part convert the hex unsigned to signed int32
+
+                stringXacc = newPacket.Substring(6, 4);
+                stringYacc = newPacket.Substring(10, 4);
+                stringZacc = newPacket.Substring(14, 4);
+
+                accValueX = Convert.ToInt16(stringXacc, 16);
+                accValueY = Convert.ToInt16(stringYacc, 16);
+                accValueZ = Convert.ToInt16(stringZacc, 16);
+
+
+                /*
+
+                accValueX = int.Parse(stringXacc, System.Globalization.NumberStyles.HexNumber);
+                accValueY = int.Parse(stringYacc, System.Globalization.NumberStyles.HexNumber);
+                accValueZ = int.Parse(stringZacc, System.Globalization.NumberStyles.HexNumber);
+
+                if (accValueX > 32767) {
+                    int difAccX = accValueX - 32768;
+                    if (difAccX == 0) {
+                        accValueX *= -1;
+                    } else {
+                        accValueX = -32768 + difAccX;
+                      }
+                    }
+
+                if (accValueY > 32767)
+                {
+                    int difAccY = accValueY - 32768;
+                    if (difAccY == 0)
+                    {
+                        accValueY *= -1;
+                    }
+                    else
+                    {
+                        accValueY = -32768 + difAccY;
+                    }
+                }
+
+
+                if (accValueZ > 32767)
+                {
+                    int difAccZ = accValueZ - 32768;
+                    if (difAccZ == 0)
+                    {
+                        accValueZ *= -1;
+                    }
+                    else
+                    {
+                        accValueZ = -32768 + difAccZ;
+                    }
+                }
+                */
+
+
+                labelXaxis.Text =Convert.ToString(accValueX); // waynes code
+                labelYaxis.Text = Convert.ToString(accValueY);
+                labelZaxis.Text = Convert.ToString(accValueZ);
+                //labelXaxis.Text = string.Format("{0:N1}", accValueX);
+                //labelYaxis.Text = string.Format("{0:N1}", accValueY);
+                //labelZaxis.Text = string.Format("{0:N1}", accValueZ);
+
+
+
+                // accValueX = Convert.ToInt32(newPacket.Substring(6, 4));
+                //accValueY = Convert.ToInt32(newPacket.Substring(10, 4));
+                // accValueZ = Convert.ToInt32(newPacket.Substring(14, 4));
 
 
                 if (checkBoxParsedHistory.IsChecked == true)

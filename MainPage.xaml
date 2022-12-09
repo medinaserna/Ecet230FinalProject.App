@@ -55,40 +55,27 @@
 
             <VerticalStackLayout>
                 <HorizontalStackLayout>
-                    <Label Text="Solar Voltage   "></Label>
-                    <Label x:Name="labelSolarVolt"
+                    <Label Text="X-axis value:   "></Label>
+                    <Label x:Name="labelXaxis"
                            MinimumWidthRequest="100"
                            HorizontalTextAlignment="Center"
                            ></Label>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout>
-                    <Label Text="Battery Voltage"></Label>
-                    <Label x:Name="labelBatteryVolt"
+                    <Label Text="Y-axis value:"></Label>
+                    <Label x:Name="labelYaxis"
                            MinimumWidthRequest="100"
                            HorizontalTextAlignment="Center"
                            ></Label>
                 </HorizontalStackLayout>
                 <HorizontalStackLayout>
-                    <Label Text="Battery Current"></Label>
-                    <Label x:Name="labelBatteryCurrent"
+                    <Label Text="Z-axis value:"></Label>
+                    <Label x:Name="labelZaxis"
                            MinimumWidthRequest="100"
                            HorizontalTextAlignment="Center"
                            ></Label>
                 </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label Text="LED 1 current"></Label>
-                    <Label x:Name="labelLED1Current"
-                           MinimumWidthRequest="100"
-                           HorizontalTextAlignment="Center"
-                           ></Label>
-                </HorizontalStackLayout>
-                <HorizontalStackLayout>
-                    <Label Text="LED 2 current"></Label>
-                    <Label x:Name="labelLED2Current"
-                           MinimumWidthRequest="100"
-                           HorizontalTextAlignment="Center"
-                           ></Label>
-                </HorizontalStackLayout>
+              
             </VerticalStackLayout>
 
         </VerticalStackLayout>

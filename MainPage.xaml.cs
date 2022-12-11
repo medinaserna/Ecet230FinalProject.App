@@ -3,6 +3,7 @@ using Microsoft.Graphics.Canvas.Effects;
 using System.ComponentModel;
 using System.IO.Ports;
 using System.Text;
+using System.Timers;
 
 namespace Ecet230FinalProject;
 
@@ -21,6 +22,15 @@ public partial class MainPage : ContentPage
     private int accValueX = 0;
     private int accValueY = 0;
     private int accValueZ = 0;
+
+    //Graph class code:
+    public int Yaxis = 0;
+    public double degrees = 0;
+    public int count = 0;
+    public int graphHeight = 500;
+
+
+
 
     StringBuilder stringBuilderSend = new StringBuilder("###1111196");
 
@@ -45,6 +55,35 @@ public partial class MainPage : ContentPage
         serialPort.ReceivedBytesThreshold = 1;
         serialPort.DataReceived += SerialPort_DataReceived;
         setUpSerialPort();
+
+        //graph:
+        var timer = new System.Timers.Timer(16);
+        timer.Elapsed += new ElapsedEventHandler(DrawNewPointOnGraph);
+        timer.Start();
+
+    }
+
+    private void DrawNewPointOnGraph(object sender, ElapsedEventArgs e)
+    {
+        var graphicsView = this.LineGraphView;
+        var lineGraphDrawable = (LineDrawable)graphicsView.Drawable;
+
+        /*  WAYNES CODE FOR LAB9
+        double angle = Math.PI * degrees++ / 180;
+        lineGraphDrawable.lineGraphs[0].Yaxis = (int)((graphHeight / 2 * Math.Sin(angle)) + graphHeight / 2);
+        lineGraphDrawable.lineGraphs[1].Yaxis = (int)(-0.002 * Math.Pow((graphHeight - count), 2) + graphHeight);
+        lineGraphDrawable.lineGraphs[2].Yaxis = count--;
+        if (count < 0)
+        {
+            count = graphHeight;
+        } */
+
+        lineGraphDrawable.lineGraphs[0].Yaxis = (int)(((-accValueX/10))+ (graphHeight / 2));
+        lineGraphDrawable.lineGraphs[1].Yaxis = (int)((-accValueY/10)+(graphHeight / 2));
+        lineGraphDrawable.lineGraphs[2].Yaxis = (int)((-accValueZ/10)+ (graphHeight / 2));
+        lineGraphDrawable.lineGraphs[3].Yaxis = (int)( 0 + (graphHeight / 2));
+
+        graphicsView.Invalidate();
     }
 
     private void setUpSerialPort()
@@ -132,7 +171,7 @@ public partial class MainPage : ContentPage
 
                 //in this part convert the hex unsigned to signed int32
 
-                stringXacc = newPacket.Substring(6, 4);
+                stringXacc = newPacket.Substring(6, 4);  //get the small string related to axis
                 stringYacc = newPacket.Substring(10, 4);
                 stringZacc = newPacket.Substring(14, 4);
 
@@ -212,16 +251,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-  /*  private void DisplaySolarData(string validPacket)
-    {
-        solarCalc.ParseSolarData(validPacket);
-        labelSolarVolt.Text = solarCalc.GetVoltage(solarCalc.analogVoltageArray[0]);
-        labelBatteryVolt.Text = solarCalc.GetVoltage(solarCalc.analogVoltageArray[2]);
-        labelBatteryCurrent.Text = solarCalc.GetCurrent(solarCalc.analogVoltageArray[1], solarCalc.analogVoltageArray[2]);
-        labelLED1Current.Text = solarCalc.GetLEDCurrent(solarCalc.analogVoltageArray[1], solarCalc.analogVoltageArray[4]);
-        labelLED2Current.Text = solarCalc.GetLEDCurrent(solarCalc.analogVoltageArray[1], solarCalc.analogVoltageArray[3]);
-    }
-  */
+ 
     private void btnOpenClose_Clicked(object sender, EventArgs e)
     {
         if (!bPortOpen)
@@ -247,46 +277,6 @@ public partial class MainPage : ContentPage
 
     }
 
-   /* private void btnSend_Clicked(object sender, EventArgs e)
-    {
-
-        try
-        {
-            string messageOut = entrySend.Text;
-            messageOut += "\r\n";
-            byte[] messageBytes = Encoding.UTF8.GetBytes(messageOut);
-            serialPort.Write(messageBytes, 0, messageBytes.Length);
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Alert", ex.Message, "Ok");
-        }
-    } */
-
-   
-    /* private void sendPacket()
-    {
-        int calSendChkSum = 0;
-
-        try
-        {
-            for (int i = 3; i < 7; i++)
-            {
-                calSendChkSum += (byte)stringBuilderSend[i];
-            }
-            calSendChkSum %= 1000;
-            stringBuilderSend.Remove(7, 3);
-            stringBuilderSend.Insert(7, calSendChkSum.ToString());
-            string messageOut = stringBuilderSend.ToString();
-            entrySend.Text = stringBuilderSend.ToString();
-            messageOut += "\r\n";
-            byte[] messageBytes = Encoding.UTF8.GetBytes(messageOut);
-            serialPort.Write(messageBytes, 0, messageBytes.Length);
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Alert", ex.Message, "Ok");
-        }
-    } */
+ 
 
 }

@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ecet230FinalProject.MainPage">
+             x:Class="Ecet230FinalProject.MainPage"
+             BackgroundColor="AliceBlue"        
+             >
+
 
     <HorizontalStackLayout
         Spacing="25"
@@ -28,7 +31,8 @@
            
           
 
-            <VerticalStackLayout>
+            <VerticalStackLayout
+                Margin="20">
                 <HorizontalStackLayout>
                     <Label Text="X-axis value:   "></Label>
                     <Label x:Name="labelXaxis"
@@ -58,14 +62,13 @@
             <HorizontalStackLayout>
                 <Label
                     Padding="20"
-                    Text="MEM DISCOVERY BOARD"
+                    Text="MEM DISCOVERY BOARD STM32F407"
                     HorizontalOptions="Center"
-                    
+                    FontAttributes="Bold"
+                    FontSize="Medium"
                     >
                     
-
                 </Label>
-
 
             </HorizontalStackLayout>
             <HorizontalStackLayout>
@@ -112,7 +115,7 @@
                 <Label
                     FontFamily="monospace"
                     FontAutoScalingEnabled="False"
-                    Text="Lenght    Header  Number   Analog0   Analog1    Analog2    Analog3    Analog4     Analog5     Binary     CkSumRX  CkSumCal  lost  ChkError  Rollover"
+                    Text="Lenght    Header  Number   X-axis   Y-axis    Z-axis     Binary     CkSumRX  CkSumCal  lost  ChkError  Rollover"
                     HorizontalOptions="Center"
                     ></Label>
 
@@ -135,5 +138,7 @@
         </VerticalStackLayout>
 
     </HorizontalStackLayout>
+
+    
 
 </ContentPage>

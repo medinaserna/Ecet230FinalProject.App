@@ -68,15 +68,7 @@ public partial class MainPage : ContentPage
         var graphicsView = this.LineGraphView;
         var lineGraphDrawable = (LineDrawable)graphicsView.Drawable;
 
-        /*  WAYNES CODE FOR LAB9
-        double angle = Math.PI * degrees++ / 180;
-        lineGraphDrawable.lineGraphs[0].Yaxis = (int)((graphHeight / 2 * Math.Sin(angle)) + graphHeight / 2);
-        lineGraphDrawable.lineGraphs[1].Yaxis = (int)(-0.002 * Math.Pow((graphHeight - count), 2) + graphHeight);
-        lineGraphDrawable.lineGraphs[2].Yaxis = count--;
-        if (count < 0)
-        {
-            count = graphHeight;
-        } */
+ 
 
         lineGraphDrawable.lineGraphs[0].Yaxis = (int)(((-accValueX/10))+ (graphHeight / 2));
         lineGraphDrawable.lineGraphs[1].Yaxis = (int)((-accValueY/10)+(graphHeight / 2));
